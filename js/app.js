@@ -1,1 +1,72 @@
 console.log("Welcome to app.js");
+showNotes();
+// Adding notes to local storage of user
+
+let addBtn = document.getElementById("addBtn");
+addBtn.addEventListener("click", function (e) {
+    let addTxt = document.getElementById("addTxt");
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    }
+    else {
+        notesObj = JSON.parse(notes);
+    }
+    notesObj.push(addTxt.value);
+    localStorage.setItem("notes", JSON.stringify(notesObj));
+    addTxt.value = " ";
+    console.log(notesObj);
+    showNotes();
+})
+
+// Function to show notes on the website
+
+function showNotes() {
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    }
+    else {
+        notesObj = JSON.parse(notes);
+    }
+    let html = " ";
+    notesObj.forEach(function (element, index) {
+        html += `
+        <div id="notes" class="row container-fluid">
+         
+            <div class="card mx-2 my-2 noteCard" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Note ${index + 1}</h5>
+                  <p class="card-text">${element}</p>
+                  <button onclick="deleteNode(this.id)" id=${index} class="btn btn-primary">Delete Node</button>
+                </div>
+            </div>
+
+        </div>
+        `
+    });
+    let notesElm = document.getElementById('notes');
+    if (notesObj.length != 0) {
+        notesElm.innerHTML = html;
+    }
+    else {
+        notesElm.innerHTML = `Nothing to show! Use "Add note" section to add notes.`
+    }
+
+}
+
+// function to delete nodes
+
+function deleteNode(index) {
+    console.log('I am deleting node', index);
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    }
+    else {
+        notesObj = JSON.parse(notes);
+    }
+    notesObj.splice(index,1);
+    localStorage.setItem("notes", JSON.stringify(notesObj));
+    showNotes();
+}
