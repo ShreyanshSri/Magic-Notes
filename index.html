@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAgic NOtes</title>
     <!-- CSS only -->
+    <!-- Adding bootstrap from get bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
 
+    <!-- Navigation bar from bootstrap  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Notetaker</a>
@@ -37,15 +39,35 @@
     </nav>
 
 
+    <!-- Adding card to recive notes from bootstrap -->
     <div class="container my-3">
         <h1>Welcome to Notetaker</h1>
-        <div class="card" >
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Add a note</h5>
-                
-                <button  class="btn btn-primary">Add note</button>
+                <div class="form-group">
+                    <textarea class="form-control" id="addTxt" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary my-2" id="addBtn">Add note</button>
             </div>
+        </div>
+        <hr>
+        <h1>Your Notes</h1>
+        <hr>
+        
+        <!-- Again adding card using bootstrap to show the notes -->
+        <div id="notes" class="row container-fluid">
+         
+            <div class="card mx-2 my-2 noteCard" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Note</h5>
+                  <p class="card-text"></p>
+                  <a href="#" class="btn btn-primary">Delete Node</a>
+                </div>
+            </div>
+
+       
+
         </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
