@@ -32,7 +32,7 @@ function showNotes() {
     let html = " ";
     notesObj.forEach(function (element, index) {
         html += `
-        <div id="notes" class="row container-fluid">
+    
          
             <div class="card mx-2 my-2 noteCard" style="width: 18rem;">
                 <div class="card-body">
@@ -42,7 +42,7 @@ function showNotes() {
                 </div>
             </div>
 
-        </div>
+
         `
     });
     let notesElm = document.getElementById('notes');
@@ -70,3 +70,25 @@ function deleteNode(index) {
     localStorage.setItem("notes", JSON.stringify(notesObj));
     showNotes();
 }
+
+let search = document.getElementById('searchTxt');
+
+search.addEventListener('input' , function()
+{
+    let inputVal = search.value.toLowerCase();
+    console.log('Input event fired', inputVal);
+    let noteCards = document.getElementsByClassName('noteCard');
+    Array.from(noteCards).forEach(function(element)
+    {
+        let cardTxt = element.getElementsByTagName("p")[0].innerText;
+        // console.log(cardTxt);
+        if(cardTxt.includes(inputVal))
+        {
+            element.style.display = "block";
+        }
+        else
+        {
+            element.style.display = "none";
+        }
+    })
+})
